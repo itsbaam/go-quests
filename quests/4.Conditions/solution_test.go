@@ -119,3 +119,34 @@ func TestClassifyRequest(t *testing.T) {
 		}
 	}
 }
+
+func TestEvaluateGrade(t *testing.T) {
+	tests := []struct {
+		score    int
+		expected string
+	}{
+		{95, "A"},
+		{85, "B"},
+		{75, "C"},
+		{65, "D"},
+		{55, "F"},
+		{100, "A"},
+		{0, "F"},
+		{89, "B"},
+		{79, "C"},
+		{69, "D"},
+		{-1, "INVALID"},
+		{101, "INVALID"},
+	}
+
+	for _, tt := range tests {
+		if got := EvaluateGrade(tt.score); got != tt.expected {
+			t.Fatalf(
+				"EvaluateGrade(%d) = %s; expected %s",
+				tt.score,
+				got,
+				tt.expected,
+			)
+		}
+	}
+}
