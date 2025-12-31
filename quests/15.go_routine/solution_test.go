@@ -8,7 +8,7 @@ import (
 func TestMain(m *testing.M) {
 	code := m.Run()
 	if code == 0 {
-		println("Success! Completed the error Quest 🎉")
+		println("Success! Completed the goroutine Quest 🎉")
 	}
 	os.Exit(code)
 }
