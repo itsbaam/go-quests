@@ -71,7 +71,7 @@ func TestRuneFrequencies(t *testing.T) {
 		{
 
 			in:   "สวัสดีส",
-			want: map[rune]int{'ส': 2, 'ว': 1, 'ั': 1, 'ด': 1, 'ี': 1},
+			want: map[rune]int{'ส': 3, 'ว': 1, 'ั': 1, 'ด': 1, 'ี': 1},
 		},
 		{
 
