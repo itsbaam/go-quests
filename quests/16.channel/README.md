@@ -71,8 +71,8 @@ func WriteToBoth(ch1 chan string, ch2 chan string, msg string)
 
 ### Required Behavior
 
-- Send **one value** to `ch1`
-- Send **one value** to `ch2`
+- Send **value** to `ch1`
+- Send **value** to `ch2`
 - Do **not** receive from either channel
 
 ### Value to Send
@@ -101,8 +101,8 @@ func ReadThenWrite(input chan string, output chan string)
 
 ### Required Behavior
 
-- Receive **exactly one value** from `input`
-- Send **exactly one value** to `output`
+- Receive **value** from `input`
+- Send **value** to `output`
 - Do **not** send to `input`
 - Do **not** receive from `output`
 
