@@ -90,7 +90,7 @@ func TestDisplayName(t *testing.T) {
 		},
 		{
 			User{},
-			" < >",
+			" <>",
 		},
 	}
 
