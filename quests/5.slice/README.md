@@ -1,149 +1,61 @@
-# Go Arrays & Slices Quest
+# Go Slices
 
-Your task is to implement **slice-processing logic** using idiomatic Go.
+## Concept
+Slices are dynamic views into arrays. They are the most common data structure for collections in Go, providing powerful features for filtering, mapping, and resizing strings or lists of data.
 
-This quest focuses on:
+## References
+- https://gobyexample.com/slices
+- https://gobyexample.com/range
+- https://go.dev/blog/slices-intro
 
-- Iterating over slices safely
-- Building new slices (not mutating inputs)
-- Index-based vs range-based loops
-- Understanding slice length and order guarantees
+## Quest
 
----
+### Objective
+Implement `ProcessScores` to filter, normalize, and adjust a list of integer scores according to specific business rules.
 
-## Reference
+### Requirements
+- Function: `ProcessScores(scores []int) []int`
+- **Output**: Return a **new slice**. Do not mutate the input slice.
+- **Processing Chain (Order Matters)**:
+    1. **Filter**: Remove invalid scores (`score < 0` or `score > 100`).
+    2. **Normalize**: Set any failing score (`< 40`) to `40`.
+    3. **Bonus**: If the count of resulting *valid* scores is **greater than 5**, add `5` to every score.
+    4. **Cap**: Ensure no score exceeds `100` after the bonus application.
+- Preservation: Maintain the relative order of scores.
 
-- [https://gobyexample.com/slices](https://gobyexample.com/slices)
-- [https://gobyexample.com/arrays](https://gobyexample.com/arrays)
-- [https://gobyexample.com/range](https://gobyexample.com/range)
+### Inputs
+- `scores`: `[]int` (list of raw scores)
 
----
+### Outputs
+- `[]int`: Processed list of scores.
 
-## Function: `ProcessScores`
+### Examples
+- `[30, 50, 110, -5, 80]`
+  - Filter: `[30, 50, 80]` (-5, 110 removed)
+  - Normalize: `[40, 50, 80]`
+  - Count (3) <= 5: No bonus.
+  - Result: `[40, 50, 80]`
 
-```go
-func ProcessScores(scores []int) []int
-```
+- `[10, 20, 30, 40, 50, 60, 70]`
+  - Filter: All keep.
+  - Normalize: `[40, 40, 40, 40, 50, 60, 70]`
+  - Count (7) > 5: Add 5 -> `[45, 45, 45, 45, 55, 65, 75]`
+  - Cap: None exceed 100.
+  - Result: `[45, 45, 45, 45, 55, 65, 75]`
 
----
-
-## Description
-
-You are given a slice of integers representing raw scores.
-
-Your task is to return a **new slice** after applying a sequence of transformations.
-
-The original slice **must not be modified**.
-
----
-
-## Transformation Rules (Order Matters)
-
-Apply the following steps **in order**:
-
----
-
-### 1. Filter Invalid Scores
-
-Remove any score that is:
-
-- Less than `0`
-- Greater than `100`
-
----
-
-### 2. Normalize Failing Scores
-
-For the remaining scores:
-
-- Any score **below 40** must be replaced with `40`
-
----
-
-### 3. Bonus Adjustment
-
-- If the number of **valid scores** after filtering is **greater than 5**, add **+5** to every score
-- Scores must be capped at `100` after adjustment
-
----
-
-### 4. Preserve Order
-
-The relative order of scores must remain unchanged throughout.
-
----
-
-## Requirements
-
-1. Use slices, not arrays
-2. Do not mutate the input slice
-3. Use at least one `append`
-4. Use loops (`for` / `range`)
-
----
-
-## Examples
-
-### Example 1
-
-```go
-input  := []int{30, 50, 110, -5, 80}
-output := []int{40, 50, 80}
-```
-
-Explanation:
-
-- `110`, `-5` removed
-- `30 → 40`
-- Only 3 valid scores → no bonus
-
----
-
-### Example 2
-
-```go
-input  := []int{10, 20, 30, 40, 50, 60, 70}
-output := []int{45, 45, 45, 45, 55, 65, 75}
-```
-
-Explanation:
-
-- All valid
-- Scores below 40 normalized
-- 7 valid scores → +5 bonus
-
----
-
-### Example 3
-
-```go
-input  := []int{}
-output := []int{}
-```
-
----
-
-## Common Mistakes (Tests Will Catch These)
-
-- Mutating the input slice
-- Applying bonus before normalization
-- Forgetting to cap scores at 100
-- Losing element order
-- Using array instead of slice semantics
-
----
-
-## Key Ideas
-
-- Slices are views; copying matters
-- Length determines logic, capacity determines performance
-- Order-preserving transforms are common in real systems
-- Build pipelines deliberately
-
----
-
-## Run Tests
-
+## Testing
+To run the tests, execute the following command from the root directory:
 ```bash
-go test ./quests/5.slice -v
+go test -v ./quests/5.slice
+```
+
+Or from the quest directory:
+```bash
+go test -v
+```
+Expected output:
+```text
+=== RUN   TestProcessScores
+--- PASS: TestProcessScores (0.00s)
+PASS
 ```

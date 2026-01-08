@@ -1,32 +1,45 @@
-# Hello World
+# Hello Go
 
-Your task is to write a Go function that prints the following string exactly:"Yo! Hello Go"
+## Concept
+Standard output (stdout) is the primary output stream for command-line applications. In Go, the `fmt` package provides formatted I/O functions to write to stdout.
 
-## Objective
-
-Implement the function so that it outputs the required string to standard output.
-
-## Reference
-
+## References
+- https://go.dev/tour/basics/1
 - https://gobyexample.com/hello-world
+- https://pkg.go.dev/fmt
 
-## Instructions
+## Quest
 
-1. Navigate to the `quests/1.hello_go` directory.
-2. Implement the required function in `solution.go`.
-3. Do not modify the test files.
-4. Ensure the output matches exactly, including punctuation and casing.
+### Objective
+Implement a function to print a specific string to standard output.
 
-## Running Tests
+### Requirements
+- Function: `HelloGo()`
+- Package: `hello_world`
+- The function must print exactly "Yo! Hello Go" to stdout.
+- Do not add a newline character at the end unless implicitly added by the print function (check if `fmt.Print` or `fmt.Println` is required; tests check for exact bytes). Note: `fmt.Print` does not add a newline.
 
-From the root of the repository, run:
+### Inputs
+None
 
+### Outputs
+- Type: `string` (to stdout)
+- Format: Plain text
+- Expected behavior: "Yo! Hello Go" is written to stdout.
+
+## Testing
+To run the tests, execute the following command from the root directory:
 ```bash
-go test ./quests/1.hello_go -v
+go test -v ./quests/1.hello_go
 ```
 
-Or from the ./quests/1.hello_go directory, run:
-
+Or from the quest directory:
 ```bash
 go test -v
+```
+Expected output:
+```text
+=== RUN   TestHelloWorld
+--- PASS: TestHelloWorld (0.00s)
+PASS
 ```

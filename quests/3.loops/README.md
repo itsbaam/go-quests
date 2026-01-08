@@ -1,146 +1,62 @@
-# Go Loops Quest
+# Go Loops
 
-Your task is to implement two functions using basic looping and string processing in Go.
+## Concept
+Loops are the primary mechanism for iteration in Go. The `for` loop is the only looping construct, supporting standard C-style loops, while-style loops, and range-based iteration over collections.
 
-- `SumEvenNumbers`
-- `KeepOnlyConsonants`
+## References
+- https://gobyexample.com/for
+- https://gobyexample.com/range
+- https://go.dev/tour/flowcontrol/1
 
-Read the requirements carefully and follow idiomatic Go practices.
+## Quest
 
-## Reference
-
-- [https://gobyexample.com/for](https://gobyexample.com/for)
-- [https://gobyexample.com/strings](https://gobyexample.com/strings)
-- [https://gobyexample.com/range](https://gobyexample.com/range)
-
----
-
-## Function 1: `SumEvenNumbers`
-
-```go
-func SumEvenNumbers(n int) int
-```
-
-### Description
-
-Given an integer `n`, compute the sum of **all even numbers from `1` to `n` (inclusive)**.
+### Objective
+Implement two functions: `SumEvenNumbers` to aggregate even integers, and `KeepOnlyConsonants` to filter strings within a slice.
 
 ### Requirements
 
-1. Iterate from `1` to `n`
-2. Identify even numbers using modulo (`%`)
-3. Accumulate only even values
-4. Return the final sum
-5. If `n <= 0`, return `0`
+#### `SumEvenNumbers`
+- Function: `SumEvenNumbers(n int) int`
+- Iterate from `1` to `n` (inclusive).
+- Sum all even numbers.
+- Return `0` if `n <= 0`.
+
+#### `KeepOnlyConsonants`
+- Function: `KeepOnlyConsonants(strs []string) []string`
+- Return a new slice containing processed strings.
+- For each string:
+    - Remove all vowels (`a, e, i, o, u`), case-insensitive.
+    - Keep all other characters (consonants, numbers, symbols).
+- **Filtering Rule**: If a processed string becomes empty (i.e., it contained only vowels or was already empty), **exclude it** from the result slice.
+
+### Inputs
+- `SumEvenNumbers`: `n` (int)
+- `KeepOnlyConsonants`: `strs` ([]string)
+
+### Outputs
+- `SumEvenNumbers`: `int` (sum of evens)
+- `KeepOnlyConsonants`: `[]string` (filtered slice)
 
 ### Examples
+- `SumEvenNumbers(10)` → `30` (2+4+6+8+10)
+- `KeepOnlyConsonants(["hello", "aeiou", "world"])` → `["hll", "wrld"]`
+- `KeepOnlyConsonants(["a", "b"])` → `["b"]`
 
-- `SumEvenNumbers(10)` → `30`
-  (2 + 4 + 6 + 8 + 10)
-- `SumEvenNumbers(5)` → `6`
-  (2 + 4)
-- `SumEvenNumbers(-3)` → `0`
-
-Do not print anything. Only return the computed value.
-
----
-
-## Function 2: `KeepOnlyConsonants`
-
-```go
-func KeepOnlyConsonants(strs []string) []string
-```
-
-### Description
-
-Given a slice of strings, return a **new slice** where:
-
-- Each string contains **only consonants**
-- All vowels (`a, e, i, o, u`) are removed
-- Case-insensitive vowel checking (`A` and `a` are both vowels)
-
-### Requirements
-
-1. Iterate over the input slice
-2. Process each string character-by-character
-3. Remove vowels (`a, e, i, o, u`)
-4. Preserve original character case for consonants
-5. Maintain the order of strings
-6. Return a new slice (do not modify input)
-
-### Examples
-
-- `["hello", "world"]` → `["hll", "wrld"]`
-- `["Go", "LANG"]` → `["G", "LNG"]`
-- `["aeiou"]` → `[""]`
-
----
-
-## Go Loops – Ultra-Quick Cheat Sheet
-
-### `for` loop
-
-```go
-for i := 0; i < n; i++ {
-    // loop body
-}
-```
-
-### Range over slice
-
-```go
-for _, v := range slice {
-    // v is the element
-}
-```
-
-### Range over string (runes)
-
-```go
-for _, ch := range str {
-    // ch is a rune
-}
-```
-
-### Modulo check (even number)
-
-```go
-if x%2 == 0 {
-    // even
-}
-```
-
-### Rune to lowercase (for vowel check)
-
-```go
-unicode.ToLower(ch)
-```
-
----
-
-## Vowels Reference
-
-```go
-a, e, i, o, u
-```
-
-Everything else (including non-letters) should be treated as consonants unless specified otherwise.
-
----
-
-### Key Ideas
-
-- Use loops, not recursion
-- Prefer clear, readable logic over clever tricks
-- Strings in Go are UTF-8; ranging over them yields runes
-- Build new values instead of mutating inputs
-
----
-
-Run tests using:
-
+## Testing
+To run the tests, execute the following command from the root directory:
 ```bash
-go test ./quests/3.loops -v
+go test -v ./quests/3.loops
 ```
 
-Do not add logging or printing. Your implementation should be pure and deterministic.
+Or from the quest directory:
+```bash
+go test -v
+```
+Expected output:
+```text
+=== RUN   TestSumEvenNumbers
+--- PASS: TestSumEvenNumbers (0.00s)
+=== RUN   TestKeepOnlyConsonants
+--- PASS: TestKeepOnlyConsonants (0.00s)
+PASS
+```

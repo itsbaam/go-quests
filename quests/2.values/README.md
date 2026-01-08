@@ -1,98 +1,56 @@
-# Go Values Quest
+# Go Values
 
-Your task is to implement the function `BuildValues`.
+## Concept
+Go is a statically typed language with a rich set of value types. These include basic types (integers, floats, booleans, strings), composite types (arrays, slices, maps, structs), pointers, functions, and interfaces. Understanding how to instantiate and assign these values is fundamental.
 
-The function should create and return a `Result` struct populated with
-different Go value types.
-
-## Reference
-
+## References
+- https://go.dev/tour/basics/11
 - https://gobyexample.com/values
-- https://gobyexample.com/variables
-- https://gobyexample.com/constants
-- https://gobyexample.com/arrays
-- https://gobyexample.com/slices
+- https://go.dev/ref/spec#Types
+
+## Quest
+
+### Objective
+Implement the `BuildValues` function to construct and return a `Result` struct populated with specific values across various Go types.
 
 ### Requirements
+- Function: `BuildValues() Result`
+- Package: `values`
+- Return a `Result` struct with the following fields explicitly set:
+    - `Str`: `"go"`
+    - `Int`: `42`
+    - `Float`: `3.14`
+    - `Bool`: `true`
+    - `Array`: `[3]int` containing `1, 2, 3`
+    - `Slice`: `[]int` containing `4, 5, 6, 7`
+    - `Map`: `map[string]int` with keys `"apple"` mapping to `2` and `"banana"` mapping to `5`
+    - `User`: `User` struct with `Name` `"Alice"` and `Age` `20`
+    - `Ptr`: A pointer to an integer with value `10`
+    - `AddFn`: A function that accepts two integers and returns their sum
+    - `Any`: An `interface{}` holding the integer `100`
+    - `ZeroMap`: An uninitialized map (nil)
 
-1. Set a string value to `"go"`
-2. Set an integer to `42`
-3. Set a float to `3.14`
-4. Set a boolean to `true`
-5. Create an array `[3]int` with values `1, 2, 3`
-6. Create a slice containing `4, 5, 6, 7`
-7. Create a map with:
-   - `"apple"` → `2`
-   - `"banana"` → `5`
-8. Define a struct `User` with:
-   - name `"Alice"`
-   - age `20`
-9. Use a pointer to store the value `10`
-10. Assign a function that adds two integers
-11. Store an interface value containing the integer `100`
-12. Leave a map uninitialized to demonstrate a zero value
+### Inputs
+None
 
-Do not print anything. Only return values.
+### Outputs
+- Type: `Result` (struct)
+- Format: Struct containing specified fields.
+- Expected behavior: The returned struct matches the requirements in the test suite.
 
-### Go Values – Ultra-Quick Cheat Sheet
-
-**Basic types**
-
-```go
-string   → "go"
-int      → 42
-float64  → 3.14
-bool     → true
-```
-
-**Composite types**
-
-```go
-array  → [3]int{1, 2, 3}        // fixed size
-slice  → []int{4, 5, 6}         // dynamic
-map    → map[string]int{"a": 1} // key–value
-struct → struct{ Name string }{"Mani"}
-```
-
-**Pointers**
-
-```go
-x := 10
-p := &x   // address
-*p        // value
-```
-
-**Functions as values**
-
-```go
-add := func(a, b int) int { return a + b }
-```
-
-**Interfaces**
-
-```go
-var v interface{}
-v = 100
-```
-
-**Zero values**
-
-```go
-int → 0 | bool → false | string → ""
-slice/map/pointer → nil
-```
-
-**Key idea:**
-Go is statically typed, everything has a clear value and a predictable zero state.
-
-From the root of the repository, run:
-
+## Testing
+To run the tests, execute the following command from the root directory:
 ```bash
-go test ./quests/2.values -v
+go test -v ./quests/2.values
 ```
 
-Or from the ./quests/2.values directory, run:
-
+Or from the quest directory:
 ```bash
 go test -v
+```
+Expected output:
+```text
+=== RUN   TestBuildValues
+--- PASS: TestBuildValues (0.00s)
+PASS
 ```
