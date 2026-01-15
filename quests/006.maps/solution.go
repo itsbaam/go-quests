@@ -5,40 +5,40 @@ type Cache struct {
 }
 
 func NewCache() *Cache {
-	// TODO: initialize the cache
-	// Read README.md for the instructions
-	return &Cache{}
+	return &Cache{data: make(map[string]int)}
 }
 
 func (c *Cache) Set(key string, value int) {
-	// TODO: implement
-	// Read README.md for the instructions
+	c.data[key] = value
 }
 
 func (c *Cache) Get(key string) (int, bool) {
-	// TODO: implement
-	// Read README.md for the instructions
+	if val, ok := c.data[key]; ok {
+		return val, true
+	}
 	return 0, false
 }
 
 func (c *Cache) Delete(key string) {
-	// TODO: implement
-	// Read README.md for the instructions
+	delete(c.data, key)
 }
 
 func (c *Cache) Count() int {
-	// TODO: implement
-	// Read README.md for the instructions
-	return 0
+	return len(c.data)
 }
 
 func (c *Cache) AllKeys() []string {
-	// TODO: implement
-	// Read README.md for the instructions
-	return []string{}
+	keys := make([]string, 0, len(c.data))
+	for k := range c.data {
+		keys = append(keys, k)
+	}
+	return keys
 }
 
 func (c *Cache) RemoveBelow(limit int) {
-	// TODO: implement
-	// Read README.md for the instructions
+	for k, v := range c.data {
+		if v < limit {
+			c.Delete(k)
+		}
+	}
 }
