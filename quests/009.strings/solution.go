@@ -18,31 +18,31 @@ func AnalyzeText(s string) TextStats {
 func RuneFrequencies(s string) map[rune]int {
 	rF := make(map[rune]int)
 
-	// for _, r := range []rune(s) {
-	// 	rF[r] = rF[r] + 1
-	// }
-	for len(s) > 0 {
-		r, size := utf8.DecodeRuneInString(s)
+	for _, r := range s {
 		rF[r] = rF[r] + 1
-		s = s[size:]
 	}
+	// for len(s) > 0 {
+	// 	r, size := utf8.DecodeRuneInString(s)
+	// 	rF[r] = rF[r] + 1
+	// 	s = s[size:]
+	// }
 
 	return rF
 }
 
 func FirstRunePosition(s string, target rune) int {
-	// for i, r := range s {
-	// 	if r == target {
-	// 		return i
-	// 	}
-	// }
-	for i := 0; i < len(s); {
-		r, size := utf8.DecodeRuneInString(s[i:])
+	for i, r := range s {
 		if r == target {
 			return i
 		}
-		i += size
 	}
+	// for i := 0; i < len(s); {
+	// 	r, size := utf8.DecodeRuneInString(s[i:])
+	// 	if r == target {
+	// 		return i
+	// 	}
+	// 	i += size
+	// }
 	return -1
 }
 
@@ -59,7 +59,7 @@ func ExtractRunes(s string) []rune {
 }
 
 func HasOnlyASCII(s string) bool {
-	// for _, r := range []rune(s) {
+	// for _, r := range s {
 	// 	if r > 127 {
 	// 		return false
 	// 	}
